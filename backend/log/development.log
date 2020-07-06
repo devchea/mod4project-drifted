@@ -1,0 +1,1364 @@
+  [1m[35m (178.9ms)[0m  [1m[35mCREATE DATABASE "test_api_development" ENCODING = 'unicode'[0m
+  [1m[35m (107.9ms)[0m  [1m[35mCREATE DATABASE "test_api_test" ENCODING = 'unicode'[0m
+  [1m[35m (9.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200703204425)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digesst" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200703204425"]]
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2020-07-03 20:45:20.680300"], ["updated_at", "2020-07-03 20:45:20.680300"]]
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for ::1 at 2020-07-05 14:46:38 -0700
+  [1m[35m (3.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.1ms | Allocations: 480)
+Completed 200 OK in 31ms (Views: 17.0ms | ActiveRecord: 0.0ms | Allocations: 3027)
+
+
+Started GET "/" for ::1 at 2020-07-05 14:46:42 -0700
+Processing by Rails::WelcomeController#index as */*
+  Rendering /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 45.0ms | Allocations: 196)
+Completed 200 OK in 48ms (Views: 46.5ms | ActiveRecord: 0.0ms | Allocations: 846)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 14:46:52 -0700
+Processing by SessionsController#is_logged_in? as */*
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 234)
+
+
+Started GET "/" for ::1 at 2020-07-05 14:46:57 -0700
+Processing by Rails::WelcomeController#index as */*
+  Rendering /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 0.6ms | Allocations: 7)
+Completed 200 OK in 4ms (Views: 1.8ms | ActiveRecord: 0.0ms | Allocations: 309)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 14:47:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 477)
+
+
+Started POST "/login" for ::1 at 2020-07-05 14:47:15 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 16ms (Views: 0.2ms | ActiveRecord: 5.5ms | Allocations: 2970)
+
+
+Started POST "/users" for ::1 at 2020-07-05 14:47:30 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 286ms (ActiveRecord: 8.3ms | Allocations: 6516)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c749cb0>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 14:47:38 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 303ms (ActiveRecord: 0.0ms | Allocations: 2711)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c50d870>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/login" for ::1 at 2020-07-05 14:47:49 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (1.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 1.7ms | Allocations: 1140)
+
+
+Started POST "/users" for ::1 at 2020-07-05 14:48:12 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 298ms (ActiveRecord: 0.0ms | Allocations: 2675)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007faea00b5030>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 14:48:13 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 298ms (ActiveRecord: 0.0ms | Allocations: 3054)
+
+
+Started POST "/users" for ::1 at 2020-07-05 14:48:13 -0700
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae99e57668>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 306ms (ActiveRecord: 0.0ms | Allocations: 5101)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c9ef550>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 14:48:15 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 313ms (ActiveRecord: 0.0ms | Allocations: 2709)
+
+
+Started POST "/users" for ::1 at 2020-07-05 14:48:15 -0700
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c7f9e08>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 14:48:15 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 587ms (ActiveRecord: 0.0ms | Allocations: 3509)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c940168>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 14:48:16 -0700
+Completed 500 Internal Server Error in 307ms (ActiveRecord: 0.0ms | Allocations: 5603)
+
+
+Started POST "/users" for ::1 at 2020-07-05 14:48:16 -0700
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9a916400>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 325ms (ActiveRecord: 0.0ms | Allocations: 2678)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae99e55200>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"richard@richard.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 313ms (ActiveRecord: 0.0ms | Allocations: 10369)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fae9c628cc8>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/users" for ::1 at 2020-07-05 14:48:34 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 2.2ms | ActiveRecord: 1.4ms | Allocations: 1052)
+
+
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/logged_in" for ::1 at 2020-07-05 16:59:37 -0700
+  [1m[35m (3.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 8ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 594)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:00:12 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 10ms (Views: 0.2ms | ActiveRecord: 2.9ms | Allocations: 2867)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:00:16 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", ""], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:3:in `create'
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.4ms | Allocations: 1128)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:00:25 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 267ms (ActiveRecord: 9.0ms | Allocations: 6516)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc261115410>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:01:39 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 261ms (ActiveRecord: 0.0ms | Allocations: 2705)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc2610fcd48>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 17:02:46 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 462)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:04:42 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 460)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:04:59 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 460)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:05:08 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 460)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:05:24 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 246ms (ActiveRecord: 0.0ms | Allocations: 2676)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc260922a28>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:06:56 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 248ms (ActiveRecord: 0.0ms | Allocations: 2674)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc26492c218>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/" for ::1 at 2020-07-05 17:07:02 -0700
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 6.1ms | Allocations: 201)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.0ms | Allocations: 1180)
+
+
+Started GET "/users" for ::1 at 2020-07-05 17:07:11 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 0.5ms | Allocations: 1266)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:07:16 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 0.0ms | Allocations: 2675)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc25fc2a230>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/users" for ::1 at 2020-07-05 17:07:57 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 6ms (Views: 1.7ms | ActiveRecord: 1.9ms | Allocations: 2472)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:07:59 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 3.1ms | Allocations: 6301)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc263848578>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:35 -0700
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password[0m
+Completed 500 Internal Server Error in 25ms (ActiveRecord: 6.0ms | Allocations: 8081)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fca01c72518>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:36 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password[0m
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms | Allocations: 3502)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fc9ff9f82d0>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:37 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password[0m
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 0.0ms | Allocations: 3481)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fc9fff81e18>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:37 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password[0m
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms | Allocations: 3524)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fca00a296e0>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:38 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+[31mUnpermitted parameter: :password[0m
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.0ms | Allocations: 3488)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fca01c89538>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:52 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 261ms (ActiveRecord: 9.3ms | Allocations: 6786)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc9fff71fb8>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:09:53 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 277ms (ActiveRecord: 0.0ms | Allocations: 2676)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fca01d48be0>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 17:11:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 535)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:11:14 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 5.4ms | Allocations: 7471)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fca058b7550>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:11:21 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.0ms | Allocations: 3452)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fca059262e8>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:11:37 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 251ms (ActiveRecord: 0.0ms | Allocations: 2710)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fc9ff9f85c8>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:11:43 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 252ms (ActiveRecord: 0.0ms | Allocations: 2674)
+
+
+  
+NoMethodError (undefined method `password_digest=' for #<User:0x00007fca0587da80>
+Did you mean?  password_digesst=
+               password_digesst
+               password_digesst?):
+  
+app/controllers/users_controller.rb:31:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 17:14:23 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 460)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:14:25 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms | Allocations: 3450)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fc9fff8a720>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:14:25 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms | Allocations: 3448)
+
+
+  
+NoMethodError (undefined method `password_digest' for #<User:0x00007fc9ff4ed2e0>
+Did you mean?  password_digesst
+               password_digesst=
+               password_digesst?):
+  
+app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.6ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (5041.0ms)[0m  [1m[35mDROP DATABASE IF EXISTS "test_api_development"[0m
+  [1m[35m (4.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200703204425)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (18.2ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mprimary::SchemaMigration Destroy (2.7ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200703204425"]]
+  [1m[35m (4.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200703204425)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (36.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200703204425"]]
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (2.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/users" for ::1 at 2020-07-05 17:19:15 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "email"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (1.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", ""], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 33ms (Views: 0.2ms | ActiveRecord: 7.1ms | Allocations: 13107)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:19:31 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "email"=>"asdf@asdf.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Create (7.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "richard"], ["email", "asdf@asdf.com"], ["password_digest", "$2a$12$1KhaIBv89VXMypsptl5CsuAviwBRvh8fTku77uYS9DMt2sGCP5YjC"], ["created_at", "2020-07-06 00:19:31.614805"], ["updated_at", "2020-07-06 00:19:31.614805"]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 258ms (Views: 0.5ms | ActiveRecord: 8.5ms | Allocations: 4393)
+
+
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT $1[0m  [["LIMIT", 11]]
+Started DELETE "/logout" for ::1 at 2020-07-05 17:19:51 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 537)
+
+
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200703204425)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.9ms)[0m  [1m[35mDROP TABLE "users"[0m
+  [1m[36mprimary::SchemaMigration Destroy (0.6ms)[0m  [1m[31mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = $1[0m  [["version", "20200703204425"]]
+  [1m[35m (2.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20200703204425)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (6.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mprimary::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20200703204425"]]
+  [1m[35m (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (2.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/logged_in" for ::1 at 2020-07-05 17:23:33 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 5ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 670)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:24:07 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 2ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 530)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:24:34 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 536)
+
+
+Started GET "/" for ::1 at 2020-07-05 17:27:56 -0700
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/richardchea/.rvm/gems/ruby-2.6.1/gems/railties-6.0.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 7.1ms | Allocations: 315)
+Completed 200 OK in 21ms (Views: 14.6ms | ActiveRecord: 0.0ms | Allocations: 2066)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(7318714466777309085)[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(7318714466777309085)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/logged_in" for ::1 at 2020-07-05 17:36:05 -0700
+  [1m[35m (2.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 5ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 668)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:36:12 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 3.5ms | Allocations: 2889)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:36:16 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1532)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:36:26 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (1.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Create (2.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "richard"], ["password_digest", "$2a$12$Jk3agdUXff6NyGdb6TRcWeV.kSm0W459.8dXucqO07jVyppy7VQIC"], ["created_at", "2020-07-06 00:36:26.626902"], ["updated_at", "2020-07-06 00:36:26.626902"]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 266ms (Views: 0.3ms | ActiveRecord: 13.8ms | Allocations: 7808)
+
+
+Started DELETE "/logout" for ::1 at 2020-07-05 17:36:28 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 533)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:36:32 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1482)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:36:36 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1482)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 17:37:12 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 531)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:37:18 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 3ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 535)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:37:20 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 535)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:37:23 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1480)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:37:47 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1481)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/login" for ::1 at 2020-07-05 17:38:01 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2020-07-05 17:41:25 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1480)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:41:37 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1491)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:41:44 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 263ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 5378)
+
+
+Started GET "/users" for ::1 at 2020-07-05 17:42:18 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.4ms | Allocations: 1128)
+
+
+Started GET "/users" for ::1 at 2020-07-05 17:42:27 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.4ms | Allocations: 1435)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:43:46 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 531)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:46:37 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 530)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:46:48 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 527)
+
+
+Started POST "/users" for ::1 at 2020-07-05 17:46:57 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.1ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 255ms (Views: 0.2ms | ActiveRecord: 0.7ms | Allocations: 4149)
+
+
+Started POST "/login" for ::1 at 2020-07-05 17:47:05 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1485)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:47:06 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1485)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:47:08 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1485)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/users" for ::1 at 2020-07-05 17:47:19 -0700
+Processing by UsersController#index as */*
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 3.7ms | ActiveRecord: 0.4ms | Allocations: 1094)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:51:25 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 2ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 576)
+
+
+Started GET "/login" for ::1 at 2020-07-05 17:51:59 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2020-07-05 17:52:41 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 1.9ms | Allocations: 4254)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 17:52:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1478)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/login" for ::1 at 2020-07-05 17:53:08 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2020-07-05 17:53:50 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1478)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/users" for ::1 at 2020-07-05 17:54:00 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard1", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "richard1"], ["password_digest", "$2a$12$EwM0zdS4k4I7XGZWyLokReHe9iLY0novoH4.c9352g2kZTslpEKQ6"], ["created_at", "2020-07-06 00:54:01.255171"], ["updated_at", "2020-07-06 00:54:01.255171"]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 261ms (Views: 0.4ms | ActiveRecord: 6.3ms | Allocations: 7315)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:54:55 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 7ms (Views: 0.9ms | ActiveRecord: 0.8ms | Allocations: 1337)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:58:38 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.6ms | Allocations: 1206)
+
+
+Started DELETE "/logout" for ::1 at 2020-07-05 17:59:51 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 528)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 17:59:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.5ms | ActiveRecord: 0.0ms | Allocations: 532)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:00:05 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 528)
+
+
+Started POST "/users" for ::1 at 2020-07-05 18:00:18 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard2", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard2"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["username", "richard2"], ["password_digest", "$2a$12$a8GggW27F2D3VRJg7Glyp.W37LxlWk1nuJQMAd.zxIYkku.YBsMdi"], ["created_at", "2020-07-06 01:00:19.228686"], ["updated_at", "2020-07-06 01:00:19.228686"]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 314ms (Views: 0.5ms | ActiveRecord: 2.1ms | Allocations: 4209)
+
+
+Started DELETE "/logout" for ::1 at 2020-07-05 18:00:23 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.3ms | ActiveRecord: 0.0ms | Allocations: 527)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:00:30 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard2", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard2", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms | Allocations: 1484)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 18:00:39 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard2", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard2", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1487)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 18:04:37 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 534)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:04:41 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1481)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 18:04:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1481)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 18:04:54 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 530)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:05:14 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 531)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:05:20 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1480)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started POST "/login" for ::1 at 2020-07-05 18:05:22 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 1480)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:3:in `create'
+Started GET "/login" for ::1 at 2020-07-05 18:06:00 -0700
+  
+ActionController::RoutingError (No route matches [GET] "/login"):
+  
+actionpack (6.0.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:36:in `call'
+web-console (4.0.3) lib/web_console/middleware.rb:132:in `call_app'
+web-console (4.0.3) lib/web_console/middleware.rb:28:in `block in call'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `catch'
+web-console (4.0.3) lib/web_console/middleware.rb:17:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.0.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `block in tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (6.0.3.2) lib/active_support/tagged_logging.rb:80:in `tagged'
+railties (6.0.3.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.0.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/static.rb:126:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.0.3.2) lib/action_dispatch/middleware/host_authorization.rb:82:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+webpacker (4.2.2) lib/webpacker/dev_server_proxy.rb:23:in `perform_request'
+rack-proxy (0.6.5) lib/rack/proxy.rb:57:in `call'
+railties (6.0.3.2) lib/rails/engine.rb:527:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started POST "/login" for ::1 at 2020-07-05 18:09:44 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 2.8ms | Allocations: 2377)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:4:in `create'
+Started GET "/logged_in" for ::1 at 2020-07-05 18:09:46 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 535)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:09:50 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms | Allocations: 1483)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:4:in `create'
+Started POST "/login" for ::1 at 2020-07-05 18:11:00 -0700
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 2.0ms | Allocations: 2918)
+
+
+  
+ActiveRecord::StatementInvalid (PG::UndefinedColumn: ERROR:  column users.email does not exist
+LINE 1: SELECT "users".* FROM "users" WHERE "users"."email" IS NULL ...
+                                            ^
+):
+  
+app/controllers/sessions_controller.rb:4:in `create'
+Started GET "/logged_in" for 127.0.0.1 at 2020-07-05 18:11:52 -0700
+Processing by SessionsController#is_logged_in? as HTML
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.0ms | Allocations: 232)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:12:23 -0700
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 200 OK in 277ms (Views: 0.3ms | ActiveRecord: 9.5ms | Allocations: 6098)
+
+
+Started POST "/users" for ::1 at 2020-07-05 18:12:45 -0700
+Processing by UsersController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}}
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[36mUser Exists? (2.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:32:in `create'
+  [1m[35m (0.2ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:32:in `create'
+Completed 200 OK in 302ms (Views: 0.2ms | ActiveRecord: 3.2ms | Allocations: 5942)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:13:04 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 200 OK in 257ms (Views: 0.5ms | ActiveRecord: 0.4ms | Allocations: 1361)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:15:51 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 5ms (Views: 0.6ms | ActiveRecord: 0.4ms | Allocations: 1323)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:15:58 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 3ms (Views: 0.5ms | ActiveRecord: 0.5ms | Allocations: 1219)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:16:02 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.5ms | Allocations: 1211)
+
+
+Started DELETE "/logout" for ::1 at 2020-07-05 18:16:06 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms | Allocations: 527)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:16:15 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 200 OK in 245ms (Views: 0.2ms | ActiveRecord: 0.3ms | Allocations: 1258)
+
+
+Started POST "/login" for ::1 at 2020-07-05 18:16:19 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}, "session"=>{"user"=>{"username"=>"richard", "password"=>"[FILTERED]"}}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "richard"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:4:in `create'
+Completed 200 OK in 252ms (Views: 0.3ms | ActiveRecord: 0.3ms | Allocations: 1336)
+
+
+Started GET "/logged_in" for ::1 at 2020-07-05 18:17:01 -0700
+Processing by SessionsController#is_logged_in? as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:12:in `current_user'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 6.6ms | Allocations: 5273)
+
+
+Started DELETE "/logout" for ::1 at 2020-07-05 18:17:02 -0700
+Processing by SessionsController#destroy as HTML
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.0ms | Allocations: 539)
+
+
